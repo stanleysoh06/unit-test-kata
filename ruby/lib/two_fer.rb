@@ -6,4 +6,5 @@ class TwoFer
 
     'One for you, one for me.'
   end
+
 end
