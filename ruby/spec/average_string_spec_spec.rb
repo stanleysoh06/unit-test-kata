@@ -1,7 +1,7 @@
 require 'rspec'
 require_relative '../lib/AverageString'
 
-  describe 'AverageStringSpec' do
+describe 'AverageStringSpec' do
 
     #create AverageString object to be used for testing
     stringAverageCalculator = AverageString.new
