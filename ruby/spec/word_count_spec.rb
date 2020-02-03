@@ -1,30 +1,33 @@
 require 'rspec'
-require_relative '../lib/Word_Count'
+require_relative '../lib/word_count'
 
 describe 'Word_Count_Spec' do
 
-  wordCounter = WordCount.new
+  word_counter = WordCount.new
 
-  let(:wordCountMap) { { "come"=>1, "in"=>1, "olly"=>2, "free"=>1 } }
+  let(:word_count_map_1) { { 'come'=>1, 'in'=>1, 'olly'=>2, 'free'=>1 } }
+  let(:word_count_map_2) { { 'come'=>1, 'in'=>6, 'olly'=>3 } }
+  let(:word_count_map_3) { { 'come'=>12 } }
+  let(:word_count_map_4) { { 'come'=>4, 'free'=>2 } }
 
   it 'is an empty string' do
-    expect(wordCounter.getInputCount('')).to eq 'n/a'
+    expect(word_counter.count_words('')).to eq 'n/a'
   end
 
-  it 'contains numbers' do
-    expect(wordCounter.getInputCount('1 2 3 4 5 6 7 8 9 10 11')).to eq 'not a valid string'
+  it 'phrases has input equals to example 1' do
+    expect(word_counter.count_words('olly olly in come free')).to eq word_count_map_1
   end
 
-  it 'contains symbol' do
-    expect(wordCounter.getInputCount('#$###@@!! *(* ( )) *(')).to eq 'not a valid string'
+  it 'phrases has input equals to example 2' do
+    expect(word_counter.count_words('olly olly come in olly in in in in in')).to eq word_count_map_2
   end
 
-  it 'contains invalid string (numbers and symbols)' do
-    expect(wordCounter.getInputCount('!@# 123 1 2 32 (((** 1)( olly')).to eq 'not a valid string'
+  it 'phrases has input equals to example 3' do
+    expect(word_counter.count_words('come come come come come come come come come come come come')).to eq word_count_map_3
   end
 
-  it 'contains valid string string' do
-    expect(wordCounter.getInputCount('olly olly in come free')).to eq wordCountMap
+  it 'phrases has input equals to example 4' do
+    expect(word_counter.count_words('come free come free come come')).to eq word_count_map_4
   end
 
 end
